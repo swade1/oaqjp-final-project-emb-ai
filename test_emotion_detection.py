@@ -4,28 +4,23 @@ import unittest
 class TestEmotionDetector(unittest.TestCase):
     def test_emotion_detector(self):
         # Test case for joy
-        result_1 = emotion_detector('I am glad this happened')
-        max_key = max(result_1, key=result_1.get)
-        self.assertEqual(max_key, 'joy')
+        emotion = emotion_detector('I am glad this happened')
+        self.assertEqual(emotion['dominant_emotion'], 'joy')
     
         # Test case for anger
-        result_2 = emotion_detector('I am really mad about this')
-        max_key = max(result_2, key=result_2.get)
-        self.assertEqual(max_key, 'anger')
+        emotion = emotion_detector('I am really mad about this')
+        self.assertEqual(emotion['dominant_emotion'], 'anger')
     
         # Test case for disgust
-        result_3 = emotion_detector('I feel disgusted just hearing about this')
-        max_key = max(result_3, key=result_3.get)
-        self.assertEqual(max_key, 'disgust')
+        emotion = emotion_detector('I feel disgusted just hearing about this')
+        self.assertEqual(emotion['dominant_emotion'], 'disgust')
 
         # Test case for sadness
-        result_4 = emotion_detector('I am so sad about this')
-        max_key = max(result_4, key=result_4.get)
-        self.assertEqual(max_key, 'sadness')
+        emotion = emotion_detector('I am so sad about this')
+        self.assertEqual(emotion['dominant_emotion'], 'sadness')
 
         # Test case for fear
-        result_5 = emotion_detector('I am really afraid that this will happen')
-        max_key = max(result_5, key=result_5.get)
-        self.assertEqual(max_key, 'fear')
+        emotion = emotion_detector('I am really afraid that this will happen')
+        self.assertEqual(emotion['dominant_emotion'], 'fear')
 
 unittest.main() 

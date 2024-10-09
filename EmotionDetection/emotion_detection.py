@@ -22,4 +22,4 @@ def emotion_detector(text_to_analyze):
         print(f"'{key}': {value},")
     print("}")
 
-    #return response_json_subset
+    return response_json_subset
