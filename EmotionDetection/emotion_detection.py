@@ -7,6 +7,11 @@ def emotion_detector(text_to_analyze):
     header = {"grpc-metadata-mm-model-id": "emotion_aggregated-workflow_lang_en_stock"}
     myobj = { "raw_document": { "text": text_to_analyze }}
     response = requests.post(url, json=myobj, headers=header)
+
+    if response.status_code == 400:
+        response_json_subset = {'anger':None,'fear':None,'sadness':None,'disgust':None,'joy':None,'dominant_emotion':None}
+        return response_json_subset
+
     formatted_response = response.json() 
     response_json_subset = formatted_response['emotionPredictions'][0]['emotion']
   
@@ -16,10 +21,10 @@ def emotion_detector(text_to_analyze):
     print("{")
     json_items = list(response_json_subset.items())
     for i, (key, value) in enumerate(json_items):
-    if i == len(json_items) - 1:
-        print(f"'{key}': {value}")
-    else:
-        print(f"'{key}': {value},")
+        if i == len(json_items) - 1:
+            print(f"'{key}': {value}")
+        else:
+            print(f"'{key}': {value},")
     print("}")
 
     return response_json_subset
